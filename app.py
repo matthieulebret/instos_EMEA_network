@@ -322,12 +322,19 @@ st.plotly_chart(fig)
 st.subheader('Deals by insto')
 
 
+
 instolist = dealswithinsto[(dealswithinsto['Is Europe']==True)&(dealswithinsto['Is insto']==True)]['Lender'].unique().tolist()
 instolist.sort()
 
 instotickets = dealswithinsto[(dealswithinsto['Is Europe']==True)&(dealswithinsto['Is insto']==True)].drop_duplicates(subset=['Name','Lender'])
 
-fig = px.treemap(instotickets,path=['Lender','sector','Name'],color='countries')
+chartlist = ['lender > sector > deal name','lender > country > sector > subsector > deal name']
+selectchart = st.selectbox('Select chart',chartlist,0,key=1)
+
+if selectchart == 'lender > sector > deal name':
+    fig = px.treemap(instotickets,path=['Lender','sector','Name'],color='countries')
+else:
+    fig = px.treemap(instotickets,path=['Lender','countries','sector','subsectors','Name'],color='countries')
 st.plotly_chart(fig)
 
 selectinsto = st.selectbox('Select insto',instolist)
