@@ -270,6 +270,8 @@ def rightname(string):
     else:
         return string
 
+extrainstolist = ['SCOR','AMP','AXA','Aviva','BNP Paribas Asset Management','Benjamin de Rothschild Infrastructure','Blackrock','Edmond de Rothschild','Generali','Hitachi','Legal & General','M&G','MEAG','Rivage','RBS Pension Fund','SUSI','Schroder','Sequoia','Standard Life','Sun Life','Vantage']
+
 def isinsto(lender):
     if lender in instolist:
         return True
@@ -305,8 +307,6 @@ def getdata():
     bigdf.index.name=None
 
 
-    bigdf['Lender']=bigdf['Lender'].apply(rightname)
-
 # bigdf
 
 # lenderlist = pd.DataFrame(bigdf['Lender'].unique())
@@ -320,7 +320,7 @@ def getdata():
     dfwithinsto = pd.merge(bigdf,instolist,left_on='Lender',right_on='Lender')
     # dfwithinsto
 
-    instolist = instolist['Lender'].tolist()
+    instolist = instolist['Lender'].tolist()+extrainstolist
 
     idlist = pd.DataFrame(dfwithinsto['id'].unique())
     idlist.columns=['id']
@@ -337,11 +337,14 @@ def getdata():
     dealswithinsto['Is Europe'] = dealswithinsto['countries'].apply(iscountry)
 
     dealswithinsto = dealswithinsto[dealswithinsto['Is Europe']==True]
+    dealswithinsto['Lender']=dealswithinsto['Lender'].apply(rightname)
 
     instolist = dealswithinsto[dealswithinsto['Is insto']==True]['Lender'].unique().tolist()
     banklist = dealswithinsto[dealswithinsto['Is insto']==False]['Lender'].unique().tolist()
+    banklist = [bank for bank in banklist if bank not in extrainstolist]
 
     hasinsto = dealswithinsto[(dealswithinsto['Is Europe']==True)&(dealswithinsto['Is insto']==True)]
+
 
     return dealswithinsto,instolist,banklist,hasinsto
 
