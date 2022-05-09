@@ -308,13 +308,15 @@ dealswithinsto,instolist,banklist,hasinsto = getdata()
 st.subheader('Deals with at least one insto')
 
 
-chartlist = ['sector > subsector > country > deal name','country > sector > subsector > deal name']
+chartlist = ['sector > subsector > country > deal name','country > sector > subsector > deal name','sector > lender > country > subsector > deal name']
 selectchart = st.selectbox('Select chart',chartlist,0)
 
 if selectchart == 'sector > subsector > country > deal name':
     fig = px.treemap(hasinsto,path=['sector','subsectors','countries','Name'],color='sector')
-else:
+elif selectchart == 'country > sector > subsector > deal name':
     fig = px.treemap(hasinsto,path=['countries','sector','subsectors','Name'],color='countries')
+else:
+    fig = px.treemap(hasinsto,path=['sector','Lender','countries','subsectors','Name'],color='Lender')
 st.plotly_chart(fig)
 
 st.subheader('Deals by insto')
