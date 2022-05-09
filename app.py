@@ -223,6 +223,8 @@ def rightname(string):
         return 'Natixis'
     elif 'SCOR' in string:
         return 'SCOR'
+    elif ('K-EXIM' in string) or ('KEXIM' in string):
+        return 'KEXIM'
     else:
         return string
 
@@ -551,6 +553,8 @@ components.html(HtmlFile.read(),height=800)
 
 
 st.subheader('Which instos are the banks interacting with?')
+
+banklist.sort()
 
 selectbank = st.selectbox('Select bank',banklist)
 
