@@ -225,6 +225,48 @@ def rightname(string):
         return 'SCOR'
     elif ('K-EXIM' in string) or ('KEXIM' in string):
         return 'KEXIM'
+    elif 'AMP' in string:
+        return 'AMP'
+    elif 'AXA' in string:
+        return 'AXA'
+    elif 'Archmore' in string:
+        return 'Archmore'
+    elif 'Aviva' in string:
+        return 'Aviva'
+    elif ('BNP Paribas Asset' in string) or ('BNP Paribas European' in string):
+        return 'BNP Paribas Asset Management'
+    elif 'Benjamin de Rothschild' in string:
+        return 'Benjamin de Rothschild Infrastructure'
+    elif 'Blackrock' in string:
+        return 'Blackrock'
+    elif 'Edmond de Rothschild' in string:
+        return 'Edmond de Rothschild'
+    elif 'Generali' in string:
+        return 'Generali'
+    elif 'Hitachi' in string:
+        return 'Hitachi'
+    elif 'Legal & General' in string:
+        return 'Legal & General'
+    elif 'M&G' in string:
+        return 'M&G'
+    elif 'MEAG' in string:
+        return 'MEAG'
+    elif 'Rivage' in string:
+        return 'Rivage'
+    elif 'Royal Bank' in string:
+        return 'RBS Pension Fund'
+    elif 'SUSI' in string:
+        return 'SUSI'
+    elif 'Schroder' in string:
+        return 'Schroder'
+    elif 'Sequoia' in string:
+        return 'Sequoia'
+    elif 'Standard Life' in string:
+        return 'Standard Life'
+    elif ('Sun Life' in string) or ('Sunlife' in string):
+        return 'Sun Life'
+    elif 'Vantage' in string:
+        return 'Vantage'
     else:
         return string
 
